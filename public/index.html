@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0b1020" />
+    <title>Video Downloader</title>
+    <meta
+      name="description"
+      content="Free video downloader for YouTube, Facebook, Instagram and more. Paste a link, pick a quality and download straight to your device."
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="/css/styles.css" />
+  </head>
+  <body>
+    <div class="bg-glow" aria-hidden="true"></div>
+
+    <!-- ══ Header ══ -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="/">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 3v12" />
+              <path d="m7 10 5 5 5-5" />
+              <path d="M4 21h16" />
+            </svg>
+          </span>
+          <span class="brand-text" data-i18n="__brand">Video Downloader</span>
+        </a>
+
+        <nav class="header-nav">
+          <button class="ghost-btn" data-modal="about" data-i18n="aboutTitle">عن الموقع</button>
+          <button class="ghost-btn" data-modal="privacy" data-i18n="privacy">الخصوصية</button>
+          <button class="ghost-btn" data-modal="terms" data-i18n="terms">شروط الاستخدام</button>
+          <button class="lang-btn" id="langToggle" title="Language">
+            <span id="langLabel">English</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ══ Hero ══ -->
+    <section class="hero container">
+      <h1 class="hero-title" data-i18n="tagline">
+        نزّل المقاطع من يوتيوب وفيسبوك وإنستغرام بسهولة
+      </h1>
+      <p class="hero-sub">
+        <span data-i18n="how1">الصق رابط الفيديو</span>
+        <span class="dot">•</span>
+        <span data-i18n="how2">اضغط تحليل</span>
+        <span class="dot">•</span>
+        <span data-i18n="how3">اختر الجودة واضغط تنزيل</span>
+      </p>
+
+      <div class="platform-chips" id="platformChips"></div>
+    </section>
+
+    <!-- ══ Main app ══ -->
+    <main class="container">
+      <section class="card app-card">
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" role="tab" data-mode="single" data-i18n="tabSingle">رابط واحد</button>
+          <!-- temporarily hidden — not working yet, will be enabled later -->
+          <!-- <button class="tab" role="tab" data-mode="multi" data-i18n="tabMulti">روابط متعددة</button> -->
+          <!-- <button class="tab" role="tab" data-mode="playlist" data-i18n="tabPlaylist">قائمة تشغيل</button> -->
+        </div>
+
+        <!-- input -->
+        <div class="input-area">
+          <div class="input-row">
+            <input
+              id="urlInput"
+              class="url-input"
+              type="url"
+              inputmode="url"
+              spellcheck="false"
+              autocomplete="off"
+              data-i18n-placeholder="placeholder"
+              placeholder="الصق رابط الفيديو هنا…"
+            />
+            <button class="icon-btn" id="pasteBtn" data-i18n="paste">لصق</button>
+            <button class="icon-btn ghost" id="clearBtn" data-i18n="clear">مسح</button>
+          </div>
+
+          <div class="input-actions">
+            <button class="primary-btn" id="analyzeBtn" data-i18n="analyze">تحليل</button>
+            <span class="hint" id="inputHint"></span>
+          </div>
+        </div>
+
+        <!-- results -->
+        <div class="results" id="results" hidden></div>
+      </section>
+
+      <!-- history -->
+      <section class="card history-card">
+        <div class="card-head">
+          <h2 data-i18n="history">سجل التنزيلات</h2>
+          <button class="ghost-btn small" id="clearHistoryBtn" data-i18n="clearHistory">مسح السجل</button>
+        </div>
+        <div class="history-list" id="historyList"></div>
+      </section>
+    </main>
+
+    <!-- ══ Footer ══ -->
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <div class="footer-block">
+          <h3 data-i18n="disclaimerTitle">تنبيه قانوني</h3>
+          <p data-i18n="disclaimerBody"></p>
+        </div>
+        <div class="footer-meta">
+          <p>© <span id="year"></span> <span data-i18n="footerRights">جميع الحقوق محفوظة</span></p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ══ Modal ══ -->
+    <div class="modal" id="modal" hidden>
+      <div class="modal-backdrop" data-close-modal></div>
+      <div class="modal-box" role="dialog" aria-modal="true">
+        <button class="modal-close" data-close-modal data-i18n-aria="close" aria-label="إغلاق">✕</button>
+        <h3 id="modalTitle"></h3>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <!-- toast -->
+    <div class="toast-wrap" id="toasts"></div>
+
+    <script type="module" src="/js/app.js"></script>
+  </body>
+</html>

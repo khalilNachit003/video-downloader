@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: video-downloader
+    runtime: docker
+    plan: free
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: RATE_LIMIT_MAX
+        value: "30"
+      - key: RATE_LIMIT_DOWNLOAD_MAX
+        value: "10"
+      - key: MAX_CONCURRENT_JOBS
+        value: "2"
+      # Optional: path to a cookies.txt inside the container for IG/FB.
+      # - key: COOKIES_FILE
+      #   value: /app/cookies.txt
